@@ -21,26 +21,18 @@ private Long id;
 private String name;
 private String type;
 private String pubdate;
-@ManyToMany(targetEntity = Researcher.class)
-private List researchers;
+
 
 
 public Publication(){}
-public Publication(String name, String type, String pubdate,List researchers)
+public Publication(String name, String type, String pubdate)
 {
 	this.name = name;
 	this.type = type;
 	this.pubdate =pubdate;
-	this.researchers = researchers;
+
 }
 
-public List getResearchers() {
-	return researchers;
-}
-
-public void setResearchers() {
-	this.researchers = researchers;
-}
 
 public String getName()
 {

@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import common.Institution;
 import common.Publication;
 import common.Researcher;
+import common.Skill;
 
 public class Loader {
 	
@@ -19,12 +20,29 @@ public class Loader {
 		
 		em.getTransaction().begin();
 		
+		//Skills
+		Skill sk1 = new Skill("C");
+		Skill sk2 =new Skill("Java");
+		Skill sk3 = new Skill("C#");
+		
+		em.persist(sk1);
+		em.persist(sk2);
+		em.persist(sk3);
+		
+		ArrayList<Skill> as1= new ArrayList<Skill>();
+		ArrayList<Skill> as2= new ArrayList<Skill>();
+		
+		as1.add(sk1);
+		as2.add(sk2);
+		as1.add(sk3);
+		
+		
 		//Publications
-		Publication pb1 = new Publication("The Hangover","Classico","02/02/2020",null);
-		Publication pb2 = new Publication("El Classico","Espetaculo","02/03/2020",null);
-		Publication pb3 = new Publication("Arsenal","Invincibles","02/04/2020",null);
-		Publication pb4 = new Publication("La Remontada","Classico","02/05/2020",null);
-		Publication pb5 = new Publication("Agora ja podes","Vintage","02/06/2020",null);
+		Publication pb1 = new Publication("The Hangover","Classico","02/02/2020");
+		Publication pb2 = new Publication("El Classico","Espetaculo","02/03/2020");
+		Publication pb3 = new Publication("Arsenal","Invincibles","02/04/2020");
+		Publication pb4 = new Publication("La Remontada","Classico","02/05/2020");
+		Publication pb5 = new Publication("Agora ja podes","Vintage","02/06/2020");
 		
 		em.persist(pb1);
 		em.persist(pb2);
@@ -51,11 +69,11 @@ public class Loader {
 		// Researchers
 
 		
-		Researcher rs1 = new Researcher("Alfredo Simões",5,5,10,al1);
-		Researcher rs2 = new Researcher("Rui Jacare",10,7,8,al2);
-		Researcher rs3 = new Researcher("Jose Perna",20,4,3,al3);
-		Researcher rs4 = new Researcher("Flavio Morgado",13,2,1,al4);
-		Researcher rs5 = new Researcher("Rui Da Bola",21,23,30,al5);
+		Researcher rs1 = new Researcher("Alfredo Simões",5,5,10,al1,as1);
+		Researcher rs2 = new Researcher("Rui Jacare",10,7,8,al2,as2);
+		Researcher rs3 = new Researcher("Jose Perna",20,4,3,al3,as2);
+		Researcher rs4 = new Researcher("Flavio Morgado",13,2,1,al4,as1);
+		Researcher rs5 = new Researcher("Rui Da Bola",21,23,30,al5,as2);
 		
 		em.persist(rs1);
 		em.persist(rs2);

@@ -22,17 +22,23 @@ private static final long serialVersionUID = 1L;
 	private int reads;
 	private int citations;
 	
+	@ManyToMany(targetEntity=Skill.class)
+	private List skills;
+	
 	@ManyToMany(targetEntity = Publication.class)
 	private List publi;
 	
+	
+	
 	public Researcher(){}
-	public Researcher(String name, int publications, int reads, int citations,List publi)
+	public Researcher(String name, int publications, int reads, int citations,List publi,List skills)
 	{
 		this.name = name;
 		this.publications = publications;
 		this.reads =reads;
 		this.citations = citations;
 		this.publi = publi;
+		this.skills=skills;
 	}
 	
 	
@@ -83,6 +89,12 @@ private static final long serialVersionUID = 1L;
 	
 	public void setPubli(List publi) {
 		this.publi = publi;
+	}
+	public List getSkills() {
+		return skills;
+	}
+	public void setSkills(List skills) {
+		this.skills=skills;
 	}
 	@Override
 	public String toString()
