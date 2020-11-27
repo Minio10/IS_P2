@@ -23,7 +23,7 @@ public class Loader {
 		//Skills
 		Skill sk1 = new Skill("C");
 		Skill sk2 =new Skill("Java");
-		Skill sk3 = new Skill("C#");
+		Skill sk3 = new Skill("Python");
 		
 		em.persist(sk1);
 		em.persist(sk2);

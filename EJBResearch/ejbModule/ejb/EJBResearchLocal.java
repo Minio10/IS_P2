@@ -6,5 +6,6 @@ import javax.ejb.Local;
 public interface EJBResearchLocal {
 	
 	public void InfoResearchers();
+	public void InfoSkill(String skill);
 
 }

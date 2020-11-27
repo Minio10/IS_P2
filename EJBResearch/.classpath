@@ -67,5 +67,6 @@
 	<classpathentry kind="lib" path="lib/txw2.jar"/>
 	<classpathentry kind="lib" path="lib/txw2-2.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/woodstox-core.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Projeto2"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -5,9 +5,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+
 
 /**
  * Session Bean implementation class EJBResearch
@@ -16,11 +25,31 @@ import javax.ejb.Stateless;
 @LocalBean
 public class EJBResearch implements EJBResearchRemote, EJBResearchLocal {
 
-    /**
-     * Default constructor. 
-     */
+    @PersistenceContext(name = "TestPersistence")
+    private EntityManager em;
     public EJBResearch() {
         // TODO Auto-generated constructor stub
+    }
+    
+    public void InfoSkill(String skill) {
+    	
+    	
+    	
+    	String jpql = "Select r FROM Researcher r";
+    	TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
+    	List<Researcher> mylist = typedQuery.getResultList();
+    	
+    	for(int i = 0; i < mylist.size();i++) {
+    		List<Skill> skills = mylist.get(i).getSkills();
+    		for(int j = 0; j < skills.size();j++) {
+    			if(skills.get(j).getName().equals(skill)) {
+    	    		System.out.println("Name:" + mylist.get(i).getName()+ " Citations: " + mylist.get(i).getCitations() + " Publications: " + mylist.get(i).getPublications() + " Reads:" + mylist.get(i).getReads());
+
+    			}
+    		}
+    	}
+    	
+    	
     }
     
     
@@ -28,51 +57,38 @@ public class EJBResearch implements EJBResearchRemote, EJBResearchLocal {
     //Obtain all from researchers
     public  void InfoResearchers() {
     	
-    	 final String name = "postgres";
-    	 final String password = "calmo";
-    	 final String tablename = "researcher";
-    	 final String url = "jdbc:postgresql://localhost/postgres";
-    	 
-    	 try
-    	 {
-	    	 Connection conn = (Connection) DriverManager.getConnection(url,name, password);
-	    	 Statement stmt = (Statement) conn.createStatement();
-	    	 ResultSet rs;
-	    	 rs = stmt.executeQuery("SELECT * FROM " + tablename);
-	    	 while (rs.next())
-	    	 {
-		    	 Long id = rs.getLong("id");
-		    	 String rName = rs.getString("name");
-		    	 int citations = rs.getInt("citations");
-		    	 int publications = rs.getInt("publications");
-		    	 int reads = rs.getInt("reads");
-		    	 String sql = "SELECT * FROM institution_researcher WHERE";
-		    	 sql += "instiresearchers_id = ?";
-		    	 PreparedStatement ps = conn.prepareStatement(sql);
-		    	 ps.setLong(1, id);
-		    	 ResultSet rs1 = ps.executeQuery();
-		    	 
-		    	 Long instID = rs1.getLong("institution_id");
-		    	 sql = "SELECT * FROM institution WHERE";
-			     sql += "id = ?";
-			     ps = conn.prepareStatement(sql);
-			     ps.setLong(1, instID);
-			     ResultSet rs2 = ps.executeQuery();
-			     String InstName = rs2.getString("name");
-		    	 
-		    	 
-		    	 
-		    	 
-		    	 System.out.println("CALMO");
-		    	 System.out.println(id + ": " + rName + " " + citations + "-"+publications +"-" +reads);
-		    	 System.out.println(InstName);
-	    	 }
-	    	 conn.close();
-	    	 }
-	    catch (Exception e)
-	    {
-	    	e.printStackTrace();
-	     }
+    	
+    	String jpql = "SELECT s FROM Researcher s";
+    	TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
+    	List<Researcher> mylist = typedQuery.getResultList();
+    	
+    	jpql = "Select i FROM Institution i";
+    	TypedQuery<Institution> typedQuery2 = em.createQuery(jpql, Institution.class);
+    	List<Institution> listInstu = typedQuery2.getResultList();
+    	
+    	
+    	
+    	for (Researcher st : mylist) {
+    		System.out.println("Name:" + st.getName()+ " Citations: " + st.getCitations() + " Publications: " + st.getPublications() + " Reads:" + st.getReads());
+    		List<Skill> as1 = st.getSkills();  
+			System.out.println("Skills");
+    		for(int i = 0; i < as1.size();i++) {
+    			System.out.println(as1.get(i).getName());
+    		}
+    		List <Publication>as2 = st.getPubli();
+    		System.out.println("Publications");
+    		for(int j = 0;j < as2.size();j++) {
+    			System.out.println(as2.get(j).getName());
+    		}
+    		for(int h = 0;h < listInstu.size();h++) {
+    			List<Researcher> res = listInstu.get(h).getInstiResearchers();
+    			if(res.contains(st) ){
+    				System.out.println("Institution: "+ listInstu.get(h).getName());
+    			}
+    		}
+    	}
+    	// Close an application-managed entity manager.
+    	// Close the factory, releasing any resources that it holds.
     	
     	
     	
