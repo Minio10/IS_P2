@@ -31,6 +31,41 @@ public class EJBResearch implements EJBResearchRemote, EJBResearchLocal {
         // TODO Auto-generated constructor stub
     }
     
+    public void InfoNameResearcher(String name) {
+    	
+    	String jpql = "Select r FROM Researcher r";
+    	TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
+    	List<Researcher> mylist = typedQuery.getResultList();
+    	
+    	jpql = "Select i FROM Institution i";
+    	TypedQuery<Institution> typedQuery2 = em.createQuery(jpql, Institution.class);
+    	List<Institution> instiList = typedQuery2.getResultList();
+    	
+    	for(Researcher r: mylist) {
+    		if(r.getName().equals(name)) {
+    			System.out.println("Researcher");
+	    		System.out.println("Name: " + r.getName()+ " Citations: " + r.getCitations() + " Publications: " + r.getPublications() + " Reads:" + r.getReads());
+	    		List <Publication> pubs = r.getPubli();
+	    		for(Publication p: pubs) {
+	    			System.out.println("Publications");
+	    			System.out.println("Name: " + p.getName() + " Type: " + p.getType() + " Publication Date: " + p.getPubDate());
+	    		}
+	    		List<Skill> skills = r.getSkills();
+	    		for(Skill s: skills) {
+	    			System.out.println("Skills");
+	    			System.out.println("Name: " + s.getName());
+	    		}
+	    		for(Institution inst: instiList) {
+	    			if(inst.getInstiResearchers().contains(r)) {
+	    				System.out.println("Institution");
+	    				System.out.println("Name: "+ inst.getName() + " Location: " + inst.getLocation()+" Department: "+ inst.getDepartment());
+	    			}
+	    		}
+	    		
+    		}
+    	}
+    }
+    
     public void InfoSkill(String skill) {
     	
     	
@@ -39,14 +74,30 @@ public class EJBResearch implements EJBResearchRemote, EJBResearchLocal {
     	TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
     	List<Researcher> mylist = typedQuery.getResultList();
     	
+    	jpql = "Select i FROM Institution i";
+    	TypedQuery<Institution> typedQuery2 = em.createQuery(jpql, Institution.class);
+    	List<Institution> instiList = typedQuery2.getResultList();
+    	
     	for(int i = 0; i < mylist.size();i++) {
     		List<Skill> skills = mylist.get(i).getSkills();
     		for(int j = 0; j < skills.size();j++) {
     			if(skills.get(j).getName().equals(skill)) {
-    	    		System.out.println("Name:" + mylist.get(i).getName()+ " Citations: " + mylist.get(i).getCitations() + " Publications: " + mylist.get(i).getPublications() + " Reads:" + mylist.get(i).getReads());
-
+    				System.out.println("Researcher");
+    	    		System.out.println("Name: " + mylist.get(i).getName()+ " Citations: " + mylist.get(i).getCitations() + " Publications: " + mylist.get(i).getPublications() + " Reads:" + mylist.get(i).getReads());
+    	    		System.out.println("Publications");
+    	    		List<Publication> publi = mylist.get(i).getPubli();
+    	    		for(Publication p: publi) {
+    	    			System.out.println("Name: " + p.getName() + " Type: " + p.getType() + " Publication Date: " + p.getPubDate());
+    	    		}
+    	    		for(Institution inst: instiList) {
+    	    			if(inst.getInstiResearchers().contains(mylist.get(i))) {
+    	    				System.out.println("Institution");
+    	    				System.out.println("Name: "+ inst.getName() + " Location: " + inst.getLocation()+" Department: "+ inst.getDepartment());
+    	    			}
+    	    		}
     			}
     		}
+    		
     	}
     	
     	
@@ -69,6 +120,7 @@ public class EJBResearch implements EJBResearchRemote, EJBResearchLocal {
     	
     	
     	for (Researcher st : mylist) {
+    		System.out.println("Researcher");
     		System.out.println("Name:" + st.getName()+ " Citations: " + st.getCitations() + " Publications: " + st.getPublications() + " Reads:" + st.getReads());
     		List<Skill> as1 = st.getSkills();  
 			System.out.println("Skills");
@@ -78,12 +130,13 @@ public class EJBResearch implements EJBResearchRemote, EJBResearchLocal {
     		List <Publication>as2 = st.getPubli();
     		System.out.println("Publications");
     		for(int j = 0;j < as2.size();j++) {
-    			System.out.println(as2.get(j).getName());
+    			System.out.println("Name: " + as2.get(j).getName() + " Type: " + as2.get(j).getType() + " Publication Date: " + as2.get(j).getPubDate());
     		}
     		for(int h = 0;h < listInstu.size();h++) {
     			List<Researcher> res = listInstu.get(h).getInstiResearchers();
     			if(res.contains(st) ){
-    				System.out.println("Institution: "+ listInstu.get(h).getName());
+    				System.out.println("Institution");
+    				System.out.println("Name: "+ listInstu.get(h).getName() + " Location: " + listInstu.get(h).getLocation()+" Department: "+ listInstu.get(h).getDepartment());
     			}
     		}
     	}

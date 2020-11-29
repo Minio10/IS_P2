@@ -7,5 +7,7 @@ public interface EJBResearchLocal {
 	
 	public void InfoResearchers();
 	public void InfoSkill(String skill);
+	public void InfoNameResearcher(String name);
+
 
 }

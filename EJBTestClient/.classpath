@@ -8,7 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/minio/Desktop/TOMCAT_HOME/apache-tomcat-8.5.49/lib/postgresql-42.2.18.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/EJBResearch"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Projeto2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EJBResearch"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
