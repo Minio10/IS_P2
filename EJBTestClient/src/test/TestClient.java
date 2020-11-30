@@ -31,8 +31,8 @@ public class TestClient {
 			
 			context = new InitialContext(jndiProperties);
 		}
-//		EJBResearchRemote cr = (EJBResearchRemote) context.lookup("EJBResearch/EJBResearch!ejb.EJBResearchRemote");
-//		cr.InfoSkill("Python");
+		EJBResearchRemote cr = (EJBResearchRemote) context.lookup("EJBResearch/EJBResearch!ejb.EJBResearchRemote");
+		cr.InfoSkill("Python");
 //		cr.InfoResearchers();
 //		cr.InfoNameResearcher("Rui Jacare");
 		
@@ -41,10 +41,10 @@ public class TestClient {
 //		pr.titlePubInfo("Arsenal");
 //		pr.resNamePubs("Jose Perna");
 		
-		EJBInstitutionRemote cr = (EJBInstitutionRemote) context.lookup("EJBResearch/EJBInstitution!ejb.EJBInstitutionRemote");
+//		EJBInstitutionRemote cr = (EJBInstitutionRemote) context.lookup("EJBResearch/EJBInstitution!ejb.EJBInstitutionRemote");
 //		cr.getAllInfo();
 //		cr.InstiResName("Jose Perna");
-		cr.InstiName("Universidade de Coimbra");
+//		cr.InstiName("Universidade de Coimbra");
 		
 		
 		

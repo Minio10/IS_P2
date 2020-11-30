@@ -5,8 +5,8 @@ import javax.ejb.Local;
 @Local
 public interface EJBPublicationLocal {
 	
-	public void getAllPub() ;
-	public void titlePubInfo(String title);
-	 public void resNamePubs(String name) ;
-
+	public String getAllPub();
+	
+	public String titlePubInfo(String title);
+	public String resNamePubs(String name) ;
 }
