@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://pub.soap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://pub.soap" xmlns:intf="http://pub.soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://pub.soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="infoPublication">
+    <complexType>
+     <sequence>
+      <element name="title" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="infoPublicationResponse">
+    <complexType>
+     <sequence>
+      <element name="infoPublicationReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllPub">
+    <complexType/>
+   </element>
+   <element name="getAllPubResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllPubReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pubFromRes">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pubFromResResponse">
+    <complexType>
+     <sequence>
+      <element name="pubFromResReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="infoPublicationResponse">
+
+      <wsdl:part element="impl:infoPublicationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="infoPublicationRequest">
+
+      <wsdl:part element="impl:infoPublication" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubFromResResponse">
+
+      <wsdl:part element="impl:pubFromResResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllPubResponse">
+
+      <wsdl:part element="impl:getAllPubResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubFromResRequest">
+
+      <wsdl:part element="impl:pubFromRes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllPubRequest">
+
+      <wsdl:part element="impl:getAllPub" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SoapPub">
+
+      <wsdl:operation name="infoPublication">
+
+         <wsdl:input message="impl:infoPublicationRequest" name="infoPublicationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:infoPublicationResponse" name="infoPublicationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllPub">
+
+         <wsdl:input message="impl:getAllPubRequest" name="getAllPubRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllPubResponse" name="getAllPubResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pubFromRes">
+
+         <wsdl:input message="impl:pubFromResRequest" name="pubFromResRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:pubFromResResponse" name="pubFromResResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SoapPubSoapBinding" type="impl:SoapPub">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="infoPublication">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="infoPublicationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="infoPublicationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllPub">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllPubRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllPubResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pubFromRes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="pubFromResRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="pubFromResResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SoapPubService">
+
+      <wsdl:port binding="impl:SoapPubSoapBinding" name="SoapPub">
+
+         <wsdlsoap:address location="http://localhost:14449/SoapPub/services/SoapPub"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
