@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://info.soap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://info.soap" xmlns:intf="http://info.soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://info.soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="resFromSkill">
+    <complexType>
+     <sequence>
+      <element name="skill" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="resFromSkillResponse">
+    <complexType>
+     <sequence>
+      <element name="resFromSkillReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllRes">
+    <complexType/>
+   </element>
+   <element name="getAllResResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllResReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="infoResearcher">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="infoResearcherResponse">
+    <complexType>
+     <sequence>
+      <element name="infoResearcherReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="resFromSkillRequest">
+
+      <wsdl:part element="impl:resFromSkill" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllResResponse">
+
+      <wsdl:part element="impl:getAllResResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="infoResearcherResponse">
+
+      <wsdl:part element="impl:infoResearcherResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="infoResearcherRequest">
+
+      <wsdl:part element="impl:infoResearcher" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllResRequest">
+
+      <wsdl:part element="impl:getAllRes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="resFromSkillResponse">
+
+      <wsdl:part element="impl:resFromSkillResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SoapInfo">
+
+      <wsdl:operation name="resFromSkill">
+
+         <wsdl:input message="impl:resFromSkillRequest" name="resFromSkillRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:resFromSkillResponse" name="resFromSkillResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllRes">
+
+         <wsdl:input message="impl:getAllResRequest" name="getAllResRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllResResponse" name="getAllResResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="infoResearcher">
+
+         <wsdl:input message="impl:infoResearcherRequest" name="infoResearcherRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:infoResearcherResponse" name="infoResearcherResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SoapInfoSoapBinding" type="impl:SoapInfo">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="resFromSkill">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="resFromSkillRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="resFromSkillResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllRes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllResRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllResResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="infoResearcher">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="infoResearcherRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="infoResearcherResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SoapInfoService">
+
+      <wsdl:port binding="impl:SoapInfoSoapBinding" name="SoapInfo">
+
+         <wsdlsoap:address location="http://localhost:14449/SoapInfo/services/SoapInfo"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SoapInfoService WSDL service -->
+
+  <service name="SoapInfo" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://info.soap"/>
+      <parameter name="wsdlServiceElement" value="SoapInfoService"/>
+      <parameter name="schemaQualified" value="http://info.soap"/>
+      <parameter name="wsdlServicePort" value="SoapInfo"/>
+      <parameter name="className" value="soap.info.SoapInfoSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SoapInfo"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="resFromSkill" qname="operNS:resFromSkill" xmlns:operNS="http://info.soap" returnQName="retNS:resFromSkillReturn" xmlns:retNS="http://info.soap" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:skill" xmlns:pns="http://info.soap" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllRes" qname="operNS:getAllRes" xmlns:operNS="http://info.soap" returnQName="retNS:getAllResReturn" xmlns:retNS="http://info.soap" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="infoResearcher" qname="operNS:infoResearcher" xmlns:operNS="http://info.soap" returnQName="retNS:infoResearcherReturn" xmlns:retNS="http://info.soap" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://info.soap" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getAllRes infoResearcher resFromSkill"/>
+
+  </service>
+</deployment>
